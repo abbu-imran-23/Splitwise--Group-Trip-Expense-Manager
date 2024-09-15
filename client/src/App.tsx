@@ -4,6 +4,8 @@ import { SignUp } from "./pages/auth/Signup";
 import Home from "./pages/Home";
 import PublicRoute from "./routes/PublicRoute";
 import PrivateRoute from "./routes/PrivateRoute";
+import Profile from "./components/core/Profile";
+import ChangePassword from "./components/core/ChangePassword";
 
 const App = () => {
   return (
@@ -28,13 +30,16 @@ const App = () => {
         />
         /*** Private Routes ***/
         <Route
-          path="home"
+          path="/"
           element={
             <PrivateRoute>
               <Home />
             </PrivateRoute>
           }
-        />
+        >
+          <Route path="profile" element={<Profile />} />
+          <Route path="profile/change-password" element={<ChangePassword />} />
+        </Route>
       </Routes>
     </div>
   );

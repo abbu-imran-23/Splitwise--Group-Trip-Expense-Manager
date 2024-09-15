@@ -16,4 +16,11 @@ export const authEndpoints = {
     SIGNUP_API: `http://localhost:4000/auth/signup`,
     LOGIN_API: `http://localhost:4000/auth/login`,
     LOGOUT_API: `http://localhost:4000/auth/logout`,
+    CHANGE_PASSWORD_API: `http://localhost:4000/auth/change-password`,
+};
+
+export const userEndpoints = {
+    FETCH_USER_API: `http://localhost:4000/user/getUserDetails`,
+    UPDATE_USER_API: `http://localhost:4000/user/updateUserDetails`,
+    DELETE_USER_API: `http://localhost:4000/user/deleteUser`,
 };

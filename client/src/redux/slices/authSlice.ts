@@ -1,10 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IAuthSlice, ISignUpFormData } from "@/interfaces/Auth";
+import { IAuthSlice, IChangePassword, ISignUpFormData } from "@/interfaces/Auth";
 
 const initialState: IAuthSlice = {
     signUpData: null,
     loading: false,
     accessToken: localStorage.getItem("accessToken") || null,
+    changePasswordData: {
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: ""
+    }
 }
 
 const authSlice = createSlice({
@@ -21,9 +26,12 @@ const authSlice = createSlice({
             state.accessToken = action.payload;
             localStorage.setItem("authToken", JSON.stringify(action.payload));
         },
+        setChangePasswordData: (state, action: PayloadAction<IChangePassword>) => {
+            state.changePasswordData = action.payload
+        }
     }
 })
 
-export const { setSignUpData, setLoading, setAccessToken } = authSlice.actions;
+export const { setSignUpData, setLoading, setAccessToken, setChangePasswordData } = authSlice.actions;
 export default authSlice.reducer;
 

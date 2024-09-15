@@ -25,13 +25,18 @@ export const Login = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<ILoginFormData>({
     resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
 
   const onLoginFormSubmit = (loginCredentials: ILoginFormData) => {
-    dispatch(login(loginCredentials, navigate));
+    dispatch(login(loginCredentials, navigate, setValue));
   };
 
   return (

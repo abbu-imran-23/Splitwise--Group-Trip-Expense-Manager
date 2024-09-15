@@ -3,6 +3,11 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import AuthRoutes from "./routes/Auth";
+import UserRoutes from "./routes/User";
+import TripRoutes from "./routes/Trip";
+import ExpenseRoutes from "./routes/Expense";
+import PaymentMethodRoutes from "./routes/PaymentMethods";
+import PaymentRoutes from "./routes/Payment";
 import errorHandler from "./middlewares/ErrorHandler";
 
 const app = express();
@@ -33,6 +38,11 @@ app.use(express.static("public"));
 
 // Routes
 app.use("/auth", AuthRoutes);
+app.use("/user", UserRoutes);
+app.use("/trip", TripRoutes);
+app.use("/expense", ExpenseRoutes);
+app.use("/paymentMethod", PaymentMethodRoutes);
+app.use("/payment", PaymentRoutes);
 
 // Error Handling Middleware
 app.use(errorHandler);

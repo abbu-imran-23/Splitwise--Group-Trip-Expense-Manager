@@ -1,7 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
-    user: null,
+    user: {
+        _id: "",
+        firstname: "",
+        lastname: "",
+        email: "",
+        phone: "",
+        avatar: "",
+        trips: "",
+        acceptedPaymentMethods: "",
+        paymentsToBePaid: "",
+        paymentsToBeRecieved: "",
+        paymentHistory: "",
+        refreshToken: "",
+    },
     loading: false,
 }
 
@@ -18,6 +31,6 @@ const profileSlice = createSlice({
     }
 })
 
-export const { setUser } = profileSlice.actions;
+export const { setUser, setLoading } = profileSlice.actions;
 export default profileSlice.reducer;
 

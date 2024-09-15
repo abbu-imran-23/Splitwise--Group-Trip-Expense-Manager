@@ -29,6 +29,10 @@ const UserSchema = new mongoose.Schema<IUser>(
             type: String,
             required: true
         },
+        phone: {
+            type: String,
+            default: null
+        },
         avatar: {
             type: String, // Cloudinary Url
             trim: true,

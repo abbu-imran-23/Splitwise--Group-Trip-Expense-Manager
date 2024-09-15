@@ -1,5 +1,5 @@
 // Imports
-import { Request, Response } from "express"
+import { NextFunction, Request, Response } from "express"
 import { User } from "../../models/User";
 import { StatusCodes } from "http-status-codes";
 import asyncHandler from "../../utils/asyncHandler";
@@ -9,10 +9,11 @@ import { IUser } from "../../interfaces";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../utils/Constants";
 import { ApiResponse } from "../../utils/ApiResponse";
 import { redis } from "../../configs/redis";
+import { resetLoginAttempt } from "../../middlewares/rateLimit";
 
 /***   Login Controller  ***/
 
-const login = asyncHandler(async (req: Request, res: Response) => {
+const login = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     // Parse user details from request body
     const { email, password } = req.body;
 
@@ -65,6 +66,9 @@ const login = asyncHandler(async (req: Request, res: Response) => {
         secure: true,
         path: "/"
     }
+
+    // Reset login attempts on successful login
+    resetLoginAttempt(req, res, next);
 
     // Get Access Token in Redis
     const accessTokenFromRedis: string = await redis.get(`${user._id}:${ACCESS_TOKEN}`);

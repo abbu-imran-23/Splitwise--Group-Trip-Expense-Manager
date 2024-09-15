@@ -7,6 +7,7 @@ export interface IUser extends Document {
     lastname: string;
     email: string;
     password: string;
+    phone: string;
     avatar: string | null;
     trips: mongoose.Types.ObjectId[];
     acceptedPaymentMethods: mongoose.Types.ObjectId[];
